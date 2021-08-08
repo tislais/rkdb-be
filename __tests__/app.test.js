@@ -71,5 +71,15 @@ describe('machine database routes', () => {
     expect(res.body).toEqual(updatedMachine);
   });
 
+  it('deletes a machine from our database', async () => {
+    const machine = await Machine.insert(machines[0]);
+
+    const res = await request(app)
+      .delete(`/api/v1/machines/${machine.id}`)
+      .send(machine);
+
+    expect(res.body).toEqual(machine);
+  });
+
 });
 
