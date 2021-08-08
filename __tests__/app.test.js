@@ -17,6 +17,7 @@ describe('demo routes', () => {
   });
 
   it('does something', async () => {
+    
     const res = await request(app)
       .post('/api/v1/machines')
       .send(machine);
@@ -26,6 +27,6 @@ describe('demo routes', () => {
       ...machine
     });
   });
-  
+
 });
 
