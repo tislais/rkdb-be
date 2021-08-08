@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS machines;
+
+CREATE TABLE machines (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name TEXT NOT NULL,
+  manufacturer TEXT NOT NULL,
+  image TEXT,
+  date TEXT,
+  type TEXT NOT NULL
+);
