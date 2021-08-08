@@ -54,5 +54,21 @@ describe('machine database routes', () => {
     expect(res.body).toEqual(machine);
   });
 
+  it('adds a serial number to a machine', async () => {
+    const machine = await Machine.insert(machines[0]);
+    machine.serial = '123';
+
+    const updatedMachine = {
+      ...machine, 
+      serial: '123'
+    };
+
+    const res = await request(app)
+      .put(`/api/v1/machines/${machine.id}`)
+      .send({ serial: '123' });
+
+    expect(res.body).toEqual(updatedMachine);
+  });
+
 });
 
