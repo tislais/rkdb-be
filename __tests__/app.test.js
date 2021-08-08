@@ -34,6 +34,7 @@ describe('machine database routes', () => {
 
     expect(res.body).toEqual({
       id: 1,
+      serial: null,
       ...machines[0]
     });
   });
@@ -44,7 +45,7 @@ describe('machine database routes', () => {
     const res = await request(app).get('/api/v1/machines');
 
     expect(res.body).toEqual(
-      [{ ...machines[0], id: 1 }, { ...machines[1], id: 2 }]
+      [{ ...machines[0], id: 1, serial: null }, { ...machines[1], id: 2, serial: null }]
     );
   });
 
@@ -56,7 +57,7 @@ describe('machine database routes', () => {
 
   it('adds a serial number to a machine', async () => {
     const machine = await Machine.insert(machines[0]);
-    machine.serial = '123';
+    machine.serial = '123';    
 
     const updatedMachine = {
       ...machine, 
