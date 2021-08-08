@@ -5,7 +5,7 @@ import app from '../lib/app.js';
 import Machine from '../lib/models/Machine.js';
 
 const machines = [
-    {
+  {
     name: 'Medieval Madness',
     manufacturer: 'Williams',
     image: 'url',
@@ -21,7 +21,7 @@ const machines = [
   }
 ];
 
-describe('demo routes', () => {
+describe('machine database routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
@@ -46,6 +46,12 @@ describe('demo routes', () => {
     expect(res.body).toEqual(
       [{ ...machines[0], id: 1 }, { ...machines[1], id: 2 }]
     );
+  });
+
+  it('finds a machine in our database by id', async () => {
+    const machine = await Machine.insert(machines[0]);
+    const res = await request(app).get(`/api/v1/machines/${machine.id}`);
+    expect(res.body).toEqual(machine);
   });
 
 });
