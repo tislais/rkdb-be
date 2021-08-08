@@ -38,12 +38,14 @@ describe('demo routes', () => {
     });
   });
 
-  it.only('finds all machines in our database', async () => {
+  it('finds all machines in our database', async () => {
     await Machine.insert(machines[0]);
     await Machine.insert(machines[1]);
     const res = await request(app).get('/api/v1/machines');
 
-    expect(res.body).toEqual(machines);
+    expect(res.body).toEqual(
+      [{ ...machines[0], id: 1 }, { ...machines[1], id: 2 }]
+    );
   });
 
 });
