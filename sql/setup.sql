@@ -6,5 +6,6 @@ CREATE TABLE machines (
   manufacturer TEXT NOT NULL,
   image TEXT,
   date TEXT,
-  type TEXT NOT NULL
+  type TEXT NOT NULL,
+  serial TEXT
 );
